@@ -191,7 +191,7 @@ class FrbResHandler:
                 self.write2(data, msum, bdp, qus, rff, rrr, aff, arr)
 
     def split_vcf_data(self, data, msum):
-        info = str(data._original_line[:-1]).replace('\tAB=', '\tPOLY=0;AB=')
+        info = str(data._original_line[:-1]).replace('\tGT:DP:AD', ';POLY=0\tGT:DP:AD')
         if self.dp_replace_flag:
             info = re.sub(';DP=\d+;', ';DP=%s;' % msum, info)
         result = []
@@ -242,7 +242,7 @@ class FrbResHandler:
         for t in self.temp_vcf_data:
             if t:
                 if poly_flag:
-                    t = t.replace('\tPOLY=0', '\tPOLY=1')
+                    t = t.replace(';POLY=0', ';POLY=1')
                 self.vcf_out_result.append(t)
 
 if __name__ == '__main__':

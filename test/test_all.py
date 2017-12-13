@@ -118,56 +118,85 @@ def test_all():
 
 def test1():
     py_out = open('temp/out.freebayes.fil.res', 'r')
-    perl_out = open('perl_out/1.freebayes.fil.res', 'r')
+    perl_out = open('right_out/out.freebayes.fil.res', 'r')
     assert perl_out.readlines() == py_out.readlines()
     py_out.close()
     perl_out.close()
 
 def test2():
     py_out = open('temp/out.sus.res', 'r')
-    perl_out = open('perl_out/2.sus.res', 'r')
+    perl_out = open('right_out/out.sus.res', 'r')
     assert perl_out.readlines() == py_out.readlines()
     py_out.close()
     perl_out.close()
 
 def test3():
     py_out = open('temp/out.merge.res', 'r')
-    perl_out = open('perl_out/3.merge.res', 'r')
+    perl_out = open('right_out/out.merge.res', 'r')
     assert perl_out.readlines() == py_out.readlines()
     py_out.close()
     perl_out.close()
 
 def test4():
     py_out = open('temp/out.check.res', 'r')
-    perl_out = open('perl_out/4.check.res', 'r')
+    perl_out = open('right_out/out.check.res', 'r')
     assert perl_out.readlines() == py_out.readlines()
     py_out.close()
     perl_out.close()
 
 def test5():
     py_out = open('temp/out.mergerev.xls', 'r')
-    perl_out = open('perl_out/5.mergerev.xls', 'r')
+    perl_out = open('right_out/out.mergerev.xls', 'r')
     assert perl_out.readlines() == py_out.readlines()
     py_out.close()
     perl_out.close()
 
 def test6():
     py_out = open('temp/out.mergerev.snpsplit.xls', 'r')
-    perl_out = open('perl_out/6.mergerev.snpsplit.xls', 'r')
+    perl_out = open('right_out/out.mergerev.snpsplit.xls', 'r')
     assert perl_out.readlines() == py_out.readlines()
     py_out.close()
     perl_out.close()
 
 def test7():
     py_out = open('temp/out.mergerev.snpsplitrev.xls', 'r')
-    perl_out = open('perl_out/7.mergerev.snpsplitrev.xls', 'r')
+    perl_out = open('right_out/out.mergerev.snpsplitrev.xls', 'r')
     assert perl_out.readlines() == py_out.readlines()
     py_out.close()
     perl_out.close()
 
 def test8():
     py_out = open('temp/out.ano.xls', 'r')
-    perl_out = open('perl_out/8.ano.xls', 'r')
+    perl_out = open('right_out/out.ano.xls', 'r')
+    assert perl_out.readlines() == py_out.readlines()
+    py_out.close()
+    perl_out.close()
+
+def test9():
+    py_out = open('temp/out.ano.vcf', 'r')
+    perl_out = open('right_out/out.ano.vcf', 'r')
+    assert perl_out.readlines() == py_out.readlines()
+    py_out.close()
+    perl_out.close()
+
+def test10():
+    py_out = open('temp/out.freebayes.fil.vcf', 'r')
+    perl_out = open('right_out/out.freebayes.fil.vcf', 'r')
+    assert perl_out.readlines() == py_out.readlines()
+    py_out.close()
+    perl_out.close()
+
+def test11():
+    py_out = open('temp/out.mergerev.snpsplitrev.vcf', 'r')
+    perl_out = open('right_out/out.mergerev.snpsplitrev.vcf', 'r')
+    assert perl_out.readlines() == py_out.readlines()
+    py_out.close()
+    perl_out.close()
+
+
+def test12():
+    py_out = open('temp/out.mergerev.vcf', 'r')
+    perl_out = open('right_out/out.mergerev.vcf', 'r')
     assert perl_out.readlines() == py_out.readlines()
     py_out.close()
     perl_out.close()
