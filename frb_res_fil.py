@@ -152,7 +152,7 @@ class FrbResHandler:
         else:
             if data.alt[0] in midd or midr in data.alt[0]:
                 if bdp[1] > bdp[0]:
-                    self.extend()
+                    self.extend(poly_flag=1)
                     self.write2(data, msum, bdp, qus, rff, rrr, aff, arr)
             else:
                 self.extend()
@@ -184,14 +184,14 @@ class FrbResHandler:
                 athm = athm[:-1]
             if athm in midd or midr in athm:
                 if bdp[1] > bdp[0]:
-                    self.extend()
+                    self.extend(poly_flag=1)
                     self.write2(data, msum, bdp, qus, rff, rrr, aff, arr)
             else:
                 self.extend()
                 self.write2(data, msum, bdp, qus, rff, rrr, aff, arr)
 
     def split_vcf_data(self, data, msum):
-        info = str(data._original_line[:-1])
+        info = str(data._original_line[:-1]).replace('\tAB=', '\tPOLY=0;AB=')
         if self.dp_replace_flag:
             info = re.sub(';DP=\d+;', ';DP=%s;' % msum, info)
         result = []
@@ -238,14 +238,16 @@ class FrbResHandler:
         for data in self.vcf_title:
             out.write(data)
 
-    def extend(self):
+    def extend(self, poly_flag=0):
         for t in self.temp_vcf_data:
             if t:
+                if poly_flag:
+                    t = t.replace('\tPOLY=0', '\tPOLY=1')
                 self.vcf_out_result.append(t)
 
 if __name__ == '__main__':
     frb = FrbResHandler()
-    frb.read_title('test/160822_IonXpress_3.freebayes.vcf')
-    frb.exectube(frb.read_file('test/160822_IonXpress_3.freebayes.vcf'))
+    frb.read_title('test/160923_IonXpress_003.freebayes.vcf')
+    frb.exectube(frb.read_file('test/160923_IonXpress_003.freebayes.vcf'))
     frb.write_vcf_out_file('1')
     frb.write_res_file('2')
