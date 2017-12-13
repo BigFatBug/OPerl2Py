@@ -1,0 +1,197 @@
+##fileformat=VCFv4.2
+##fileDate=20170712
+##source=freeBayes v1.1.0-3-g961e5f3
+##reference=/home/wangshujuan/database/gatk/ftp.broadinstitute.org/bundle/hg19/hg19.fa
+##contig=<ID=chrM,length=16571>
+##contig=<ID=chr1,length=249250621>
+##contig=<ID=chr2,length=243199373>
+##contig=<ID=chr3,length=198022430>
+##contig=<ID=chr4,length=191154276>
+##contig=<ID=chr5,length=180915260>
+##contig=<ID=chr6,length=171115067>
+##contig=<ID=chr7,length=159138663>
+##contig=<ID=chr8,length=146364022>
+##contig=<ID=chr9,length=141213431>
+##contig=<ID=chr10,length=135534747>
+##contig=<ID=chr11,length=135006516>
+##contig=<ID=chr12,length=133851895>
+##contig=<ID=chr13,length=115169878>
+##contig=<ID=chr14,length=107349540>
+##contig=<ID=chr15,length=102531392>
+##contig=<ID=chr16,length=90354753>
+##contig=<ID=chr17,length=81195210>
+##contig=<ID=chr18,length=78077248>
+##contig=<ID=chr19,length=59128983>
+##contig=<ID=chr20,length=63025520>
+##contig=<ID=chr21,length=48129895>
+##contig=<ID=chr22,length=51304566>
+##contig=<ID=chrX,length=155270560>
+##contig=<ID=chrY,length=59373566>
+##phasing=none
+##commandline="/home/minghongbo/work/soft/freebayes/bin/freebayes -f /home/wangshujuan/database/gatk/ftp.broadinstitute.org/bundle/hg19/hg19.fa -t /home/minghongbo/work/lib/MP33_lib.bed -4 -F 0.01 -C 5 --min-coverage 30 --haplotype-length 20 --pooled-continuous 161125_IonXpress_077.recal.bam"
+##INFO=<ID=NS,Number=1,Type=Integer,Description="Number of samples with data">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Total read depth at the locus">
+##INFO=<ID=DPB,Number=1,Type=Float,Description="Total read depth per bp at the locus; bases in reads overlapping / bases in haplotype">
+##INFO=<ID=AC,Number=A,Type=Integer,Description="Total number of alternate alleles in called genotypes">
+##INFO=<ID=AN,Number=1,Type=Integer,Description="Total number of alleles in called genotypes">
+##INFO=<ID=AF,Number=A,Type=Float,Description="Estimated allele frequency in the range (0,1]">
+##INFO=<ID=RO,Number=1,Type=Integer,Description="Count of full observations of the reference haplotype.">
+##INFO=<ID=AO,Number=A,Type=Integer,Description="Count of full observations of this alternate haplotype.">
+##INFO=<ID=PRO,Number=1,Type=Float,Description="Reference allele observation count, with partial observations recorded fractionally">
+##INFO=<ID=PAO,Number=A,Type=Float,Description="Alternate allele observations, with partial observations recorded fractionally">
+##INFO=<ID=QR,Number=1,Type=Integer,Description="Reference allele quality sum in phred">
+##INFO=<ID=QA,Number=A,Type=Integer,Description="Alternate allele quality sum in phred">
+##INFO=<ID=PQR,Number=1,Type=Float,Description="Reference allele quality sum in phred for partial observations">
+##INFO=<ID=PQA,Number=A,Type=Float,Description="Alternate allele quality sum in phred for partial observations">
+##INFO=<ID=SRF,Number=1,Type=Integer,Description="Number of reference observations on the forward strand">
+##INFO=<ID=SRR,Number=1,Type=Integer,Description="Number of reference observations on the reverse strand">
+##INFO=<ID=SAF,Number=A,Type=Integer,Description="Number of alternate observations on the forward strand">
+##INFO=<ID=SAR,Number=A,Type=Integer,Description="Number of alternate observations on the reverse strand">
+##INFO=<ID=SRP,Number=1,Type=Float,Description="Strand balance probability for the reference allele: Phred-scaled upper-bounds estimate of the probability of observing the deviation between SRF and SRR given E(SRF/SRR) ~ 0.5, derived using Hoeffding's inequality">
+##INFO=<ID=SAP,Number=A,Type=Float,Description="Strand balance probability for the alternate allele: Phred-scaled upper-bounds estimate of the probability of observing the deviation between SAF and SAR given E(SAF/SAR) ~ 0.5, derived using Hoeffding's inequality">
+##INFO=<ID=AB,Number=A,Type=Float,Description="Allele balance at heterozygous sites: a number between 0 and 1 representing the ratio of reads showing the reference allele to all reads, considering only reads from individuals called as heterozygous">
+##INFO=<ID=ABP,Number=A,Type=Float,Description="Allele balance probability at heterozygous sites: Phred-scaled upper-bounds estimate of the probability of observing the deviation between ABR and ABA given E(ABR/ABA) ~ 0.5, derived using Hoeffding's inequality">
+##INFO=<ID=RUN,Number=A,Type=Integer,Description="Run length: the number of consecutive repeats of the alternate allele in the reference genome">
+##INFO=<ID=RPP,Number=A,Type=Float,Description="Read Placement Probability: Phred-scaled upper-bounds estimate of the probability of observing the deviation between RPL and RPR given E(RPL/RPR) ~ 0.5, derived using Hoeffding's inequality">
+##INFO=<ID=RPPR,Number=1,Type=Float,Description="Read Placement Probability for reference observations: Phred-scaled upper-bounds estimate of the probability of observing the deviation between RPL and RPR given E(RPL/RPR) ~ 0.5, derived using Hoeffding's inequality">
+##INFO=<ID=RPL,Number=A,Type=Float,Description="Reads Placed Left: number of reads supporting the alternate balanced to the left (5') of the alternate allele">
+##INFO=<ID=RPR,Number=A,Type=Float,Description="Reads Placed Right: number of reads supporting the alternate balanced to the right (3') of the alternate allele">
+##INFO=<ID=EPP,Number=A,Type=Float,Description="End Placement Probability: Phred-scaled upper-bounds estimate of the probability of observing the deviation between EL and ER given E(EL/ER) ~ 0.5, derived using Hoeffding's inequality">
+##INFO=<ID=EPPR,Number=1,Type=Float,Description="End Placement Probability for reference observations: Phred-scaled upper-bounds estimate of the probability of observing the deviation between EL and ER given E(EL/ER) ~ 0.5, derived using Hoeffding's inequality">
+##INFO=<ID=DPRA,Number=A,Type=Float,Description="Alternate allele depth ratio.  Ratio between depth in samples with each called alternate allele and those without.">
+##INFO=<ID=ODDS,Number=1,Type=Float,Description="The log odds ratio of the best genotype combination to the second-best.">
+##INFO=<ID=GTI,Number=1,Type=Integer,Description="Number of genotyping iterations required to reach convergence or bailout.">
+##INFO=<ID=TYPE,Number=A,Type=String,Description="The type of allele, either snp, mnp, ins, del, or complex.">
+##INFO=<ID=CIGAR,Number=A,Type=String,Description="The extended CIGAR representation of each alternate allele, with the exception that '=' is replaced by 'M' to ease VCF parsing.  Note that INDEL alleles do not have the first matched base (which is provided by default, per the spec) referred to by the CIGAR.">
+##INFO=<ID=NUMALT,Number=1,Type=Integer,Description="Number of unique non-reference alleles in called genotypes at this position.">
+##INFO=<ID=MEANALT,Number=A,Type=Float,Description="Mean number of unique non-reference allele observations per sample with the corresponding alternate alleles.">
+##INFO=<ID=LEN,Number=A,Type=Integer,Description="allele length">
+##INFO=<ID=MQM,Number=A,Type=Float,Description="Mean mapping quality of observed alternate alleles">
+##INFO=<ID=MQMR,Number=1,Type=Float,Description="Mean mapping quality of observed reference alleles">
+##INFO=<ID=PAIRED,Number=A,Type=Float,Description="Proportion of observed alternate alleles which are supported by properly paired read fragments">
+##INFO=<ID=PAIREDR,Number=1,Type=Float,Description="Proportion of observed reference alleles which are supported by properly paired read fragments">
+##INFO=<ID=MIN_DP,Number=1,Type=Integer,Description="Minimum depth in gVCF output block.">
+##INFO=<ID=END,Number=1,Type=Integer,Description="Last position (inclusive) in gVCF output record.">
+##INFO=<ID=technology.illumina,Number=A,Type=Float,Description="Fraction of observations supporting the alternate observed in reads from illumina">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=GQ,Number=1,Type=Float,Description="Genotype Quality, the Phred-scaled marginal (or unconditional) probability of the called genotype">
+##FORMAT=<ID=GL,Number=G,Type=Float,Description="Genotype Likelihood, log10-scaled likelihoods of the data given the called genotype for each possible genotype generated from the reference and alternate alleles given the sample ploidy">
+##FORMAT=<ID=DP,Number=1,Type=Integer,Description="Read Depth">
+##FORMAT=<ID=AD,Number=R,Type=Integer,Description="Number of observation for each allele">
+##FORMAT=<ID=RO,Number=1,Type=Integer,Description="Reference allele observation count">
+##FORMAT=<ID=QR,Number=1,Type=Integer,Description="Sum of quality of the reference observations">
+##FORMAT=<ID=AO,Number=A,Type=Integer,Description="Alternate allele observation count">
+##FORMAT=<ID=QA,Number=A,Type=Integer,Description="Sum of quality of the alternate observations">
+##FORMAT=<ID=MIN_DP,Number=1,Type=Integer,Description="Minimum depth in gVCF output block.">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	161125_IonXpress_077
+chr10	43613843	.	G	T	.	.	DP=1664;AO=974;FS=1197;RS=467;SAF=693;SAR=281;HA=0;Level=Class_1
+chr17	7577538	.	C	T	.	.	DP=2172;AO=58;FS=895;RS=1277;SAF=35;SAR=23;HA=0;Level=Class_1
+chr17	7578203	.	C	T	.	.	DP=2023;AO=32;FS=952;RS=1071;SAF=15;SAR=17;HA=0;Level=Class_1
+chr17	7578265	.	A	G	.	.	DP=2028;AO=677;FS=951;RS=1077;SAF=333;SAR=344;HA=0;Level=Class_1
+chr17	7578475	.	G	A	.	.	DP=809;AO=21;FS=663;RS=146;SAF=14;SAR=7;HA=0;Level=Class_1
+chr17	7579472	.	G	C	.	.	DP=333;AO=161;FS=194;RS=139;SAF=94;SAR=67;HA=0;Level=Class_1
+chr2	29443591	.	C	T	.	.	DP=2832;AO=40;FS=1384;RS=1448;SAF=18;SAR=22;HA=0;Level=Class_1
+chr4	153247367	.	G	A	.	.	DP=1275;AO=17;FS=621;RS=654;SAF=6;SAR=11;HA=0;Level=Class_1
+chr7	55242469	.	TTAAGAGAA	-	.	.	DP=3463;AO=119;FS=2120;RS=1343;SAF=73;SAR=46;HA=0;Level=Class_1
+chr7	55242469	.	TTAAGAGAAG	C	.	.	DP=3479;AO=119;FS=2130;RS=1349;SAF=73;SAR=46;HA=0;Level=Class_1
+chr1	162748359	.	T	C	.	.	DP=4269;AO=1046;FS=1665;RS=2604;SAF=389;SAR=657;HA=0;Level=Undefined
+chr10	43609169	.	GA	GCA	.	.	DP=2322;AO=292;FS=798;RS=1524;SAF=292;SAR=0;HA=0;Level=Undefined
+chr10	43609176	.	CA	CGA	.	.	DP=2278;AO=83;FS=755;RS=1523;SAF=83;SAR=0;HA=0;Level=Undefined
+chr10	43609969	.	G	A	.	.	DP=508;AO=9;FS=298;RS=210;SAF=6;SAR=3;HA=0;Level=Undefined
+chr10	43613825	.	C	T	.	.	DP=1664;AO=18;FS=1198;RS=466;SAF=13;SAR=5;HA=0;Level=Undefined
+chr10	89624274	.	TC	TAC	.	.	DP=4667;AO=305;FS=2746;RS=1921;SAF=305;SAR=0;HA=0;Level=Undefined
+chr10	89711831	.	AC	ATC	.	.	DP=2015;AO=42;FS=837;RS=1178;SAF=0;SAR=42;HA=0;Level=Undefined
+chr10	89711832	.	C	T	.	.	DP=2015;AO=69;FS=837;RS=1178;SAF=0;SAR=69;HA=0;Level=Undefined
+chr10	89711833	.	AT	CA	.	.	DP=2009;AO=69;FS=819;RS=1190;SAF=0;SAR=69;HA=0;Level=Undefined
+chr10	89711849	.	GC	GTC	.	.	DP=2038;AO=115;FS=821;RS=1217;SAF=115;SAR=0;HA=0;Level=Undefined
+chr10	89711866	.	GTC	GTTC	.	.	DP=2044;AO=73;FS=821;RS=1223;SAF=73;SAR=0;HA=0;Level=Undefined
+chr10	89717707	.	TCA	TCCA	.	.	DP=4326;AO=129;FS=1215;RS=3111;SAF=127;SAR=2;HA=0;Level=Undefined
+chr10	123257984	.	G	A	.	.	DP=3240;AO=72;FS=1144;RS=2096;SAF=23;SAR=49;HA=0;Level=Undefined
+chr10	123274832	.	C	T	.	.	DP=2565;AO=28;FS=1413;RS=1152;SAF=16;SAR=12;HA=0;Level=Undefined
+chr10	123279585	.	CAC	CAAC	.	.	DP=1464;AO=116;FS=919;RS=545;SAF=0;SAR=116;HA=0;Level=Undefined
+chr10	123279633	.	AG	ATG	.	.	DP=1510;AO=33;FS=918;RS=592;SAF=0;SAR=33;HA=0;Level=Undefined
+chr11	533533	.	TGC	TGGC	.	.	DP=1090;AO=41;FS=357;RS=733;SAF=41;SAR=0;HA=0;Level=Undefined
+chr11	533839	.	GCA	GCCA	.	.	DP=879;AO=12;FS=489;RS=390;SAF=12;SAR=0;HA=0;Level=Undefined
+chr11	534242	.	A	G	.	.	DP=325;AO=17;FS=325;RS=0;SAF=17;SAR=0;HA=0;Level=Undefined
+chr11	534270	.	G	A	.	.	DP=324;AO=15;FS=324;RS=0;SAF=15;SAR=0;HA=0;Level=Undefined
+chr11	534293	.	GCC	GC	.	.	DP=245;AO=198;FS=245;RS=0;SAF=198;SAR=0;HA=0;Level=Undefined
+chr14	105246531	.	C	T	.	.	DP=418;AO=21;FS=237;RS=181;SAF=11;SAR=10;HA=0;Level=Undefined
+chr15	66729164	.	G	A	.	.	DP=1676;AO=18;FS=616;RS=1060;SAF=10;SAR=8;HA=0;Level=Undefined
+chr15	66729228	.	AT	ACT	.	.	DP=1672;AO=105;FS=611;RS=1061;SAF=0;SAR=105;HA=0;Level=Undefined
+chr15	90631877	.	CG	CTG	.	.	DP=1772;AO=206;FS=901;RS=871;SAF=0;SAR=206;HA=0;Level=Undefined
+chr17	7573933	.	TG	TCG	.	.	DP=671;AO=328;FS=294;RS=377;SAF=0;SAR=328;HA=0;Level=Undefined
+chr17	7573941	.	GCT	GCCT	.	.	DP=659;AO=19;FS=291;RS=368;SAF=1;SAR=18;HA=0;Level=Undefined
+chr17	7573956	.	CT	CGT	.	.	DP=706;AO=9;FS=295;RS=411;SAF=0;SAR=9;HA=0;Level=Undefined
+chr17	7574012	.	C	T	.	.	DP=728;AO=13;FS=293;RS=435;SAF=1;SAR=12;HA=0;Level=Undefined
+chr17	7574017	.	C	T	.	.	DP=724;AO=42;FS=291;RS=433;SAF=2;SAR=40;HA=0;Level=Undefined
+chr17	7574029	.	C	T	.	.	DP=724;AO=42;FS=291;RS=433;SAF=2;SAR=40;HA=0;Level=Undefined
+chr17	7574017	.	CGCTCACGCCCAC	CGCTCACGCCCCAC	.	.	DP=724;AO=13;FS=291;RS=433;SAF=13;SAR=0;HA=0;Level=Undefined
+chr17	7577046	.	C	T	.	.	DP=2193;AO=30;FS=1135;RS=1058;SAF=13;SAR=17;HA=0;Level=Undefined
+chr17	7577593	.	TACA	TA	.	.	DP=2168;AO=24;FS=890;RS=1278;SAF=8;SAR=16;HA=0;Level=Undefined
+chr17	7578388	.	C	T	.	.	DP=811;AO=9;FS=665;RS=146;SAF=7;SAR=2;HA=0;Level=Undefined
+chr17	7578389	.	G	A	.	.	DP=809;AO=23;FS=663;RS=146;SAF=16;SAR=7;HA=0;Level=Undefined
+chr17	7579485	.	CT	CGT	.	.	DP=338;AO=45;FS=198;RS=140;SAF=45;SAR=0;HA=0;Level=Undefined
+chr17	37880221	.	GA	GCA	.	.	DP=2861;AO=86;FS=1138;RS=1723;SAF=0;SAR=86;HA=0;Level=Undefined
+chr17	37880263	.	C	T	.	.	DP=2897;AO=65;FS=1132;RS=1765;SAF=16;SAR=49;HA=0;Level=Undefined
+chr17	37880264	.	G	A	.	.	DP=2896;AO=49;FS=1131;RS=1765;SAF=27;SAR=22;HA=0;Level=Undefined
+chr17	37880286	.	GCT	GCCT	.	.	DP=2890;AO=59;FS=1123;RS=1767;SAF=59;SAR=0;HA=0;Level=Undefined
+chr17	37880328	.	CT	CGT	.	.	DP=2887;AO=42;FS=1115;RS=1772;SAF=40;SAR=2;HA=0;Level=Undefined
+chr17	37880988	.	GTGATGGCTG	ATGATGGCTCG	.	.	DP=1579;AO=24;FS=800;RS=779;SAF=1;SAR=23;HA=0;Level=Undefined
+chr17	37881353	.	C	T	.	.	DP=1319;AO=16;FS=847;RS=472;SAF=6;SAR=10;HA=0;Level=Undefined
+chr17	37881427	.	C	T	.	.	DP=1324;AO=19;FS=847;RS=477;SAF=16;SAR=3;HA=0;Level=Undefined
+chr18	48593459	.	G	T	.	.	DP=7815;AO=86;FS=3849;RS=3966;SAF=43;SAR=43;HA=0;Level=Undefined
+chr19	1207031	.	G	A	.	.	DP=1773;AO=19;FS=1160;RS=613;SAF=13;SAR=6;HA=0;Level=Undefined
+chr19	1207041	.	C	A	.	.	DP=1772;AO=31;FS=1159;RS=613;SAF=22;SAR=9;HA=0;Level=Undefined
+chr19	1207061	.	TGA	TGGA	.	.	DP=1762;AO=55;FS=1155;RS=607;SAF=3;SAR=52;HA=0;Level=Undefined
+chr19	3118885	.	C	T	.	.	DP=773;AO=49;FS=732;RS=41;SAF=37;SAR=12;HA=0;Level=Undefined
+chr19	3118914	.	CCTT	CT	.	.	DP=764;AO=21;FS=729;RS=35;SAF=0;SAR=21;HA=0;Level=Undefined
+chr19	3118933	.	TG	GT	.	.	DP=880;AO=14;FS=725;RS=155;SAF=0;SAR=14;HA=0;Level=Undefined
+chr2	29432625	.	C	A	.	.	DP=5862;AO=85;FS=1966;RS=3896;SAF=31;SAR=54;HA=0;Level=Undefined
+chr2	29443577	.	G	A	.	.	DP=2128;AO=34;FS=1385;RS=743;SAF=27;SAR=7;HA=0;Level=Undefined
+chr2	29443617	.	C	G	.	.	DP=2829;AO=42;FS=1374;RS=1455;SAF=17;SAR=25;HA=0;Level=Undefined
+chr2	209113119	.	TG	TCG	.	.	DP=4703;AO=173;FS=2385;RS=2318;SAF=0;SAR=173;HA=0;Level=Undefined
+chr2	209113142	.	CT	CGT	.	.	DP=5021;AO=735;FS=2385;RS=2636;SAF=0;SAR=735;HA=0;Level=Undefined
+chr2	209113189	.	C	T	.	.	DP=5271;AO=63;FS=2372;RS=2899;SAF=29;SAR=34;HA=0;Level=Undefined
+chr2	212288972	.	GGAA	GA	.	.	DP=3090;AO=33;FS=1024;RS=2066;SAF=33;SAR=0;HA=0;Level=Undefined
+chr2	212288972	.	GGAA	GGA	.	.	DP=3090;AO=169;FS=1024;RS=2066;SAF=169;SAR=0;HA=0;Level=Undefined
+chr2	212288987	.	GGTT	GT	.	.	DP=2641;AO=28;FS=578;RS=2063;SAF=28;SAR=0;HA=0;Level=Undefined
+chr2	212288987	.	GGTT	GGT	.	.	DP=2641;AO=171;FS=578;RS=2063;SAF=161;SAR=10;HA=0;Level=Undefined
+chr2	212530099	.	TA	TCA	.	.	DP=2945;AO=65;FS=1602;RS=1343;SAF=0;SAR=65;HA=0;Level=Undefined
+chr2	212530179	.	GC	GTC	.	.	DP=2924;AO=47;FS=1579;RS=1345;SAF=46;SAR=1;HA=0;Level=Undefined
+chr2	212587233	.	TC	TGC	.	.	DP=3666;AO=89;FS=2038;RS=1628;SAF=89;SAR=0;HA=0;Level=Undefined
+chr20	57484607	.	C	T	.	.	DP=3350;AO=41;FS=1767;RS=1583;SAF=23;SAR=18;HA=0;Level=Undefined
+chr3	41266130	.	G	T	.	.	DP=3791;AO=40;FS=2025;RS=1766;SAF=19;SAR=21;HA=0;Level=Undefined
+chr4	1807854	.	TG	TCG	.	.	DP=1693;AO=28;FS=782;RS=911;SAF=0;SAR=28;HA=0;Level=Undefined
+chr4	1807894	.	GACCAACGTGAGCCCGGCC	AACCAACGTGAGCCCGGC	.	.	DP=1677;AO=52;FS=773;RS=904;SAF=0;SAR=52;HA=0;Level=Undefined
+chr4	1807894	.	G	A	.	.	DP=1677;AO=1625;FS=773;RS=904;SAF=773;SAR=852;HA=0;Level=Undefined
+chr4	55141055	.	A	G	.	.	DP=2417;AO=2417;FS=1454;RS=963;SAF=1454;SAR=963;HA=0;Level=Undefined
+chr4	55152040	.	C	T	.	.	DP=3210;AO=1454;FS=1090;RS=2120;SAF=513;SAR=941;HA=0;Level=Undefined
+chr4	55593672	.	C	A	.	.	DP=2566;AO=26;FS=1020;RS=1546;SAF=6;SAR=20;HA=0;Level=Undefined
+chr4	153247287	.	GCG	GCCG	.	.	DP=1247;AO=28;FS=622;RS=625;SAF=0;SAR=28;HA=0;Level=Undefined
+chr4	153247287	.	GCGGAC	GCCGGAAC	.	.	DP=1253;AO=224;FS=623;RS=630;SAF=0;SAR=224;HA=0;Level=Undefined
+chr4	153247290	.	GAC	GAAC	.	.	DP=1255;AO=152;FS=623;RS=632;SAF=0;SAR=152;HA=0;Level=Undefined
+chr4	153247290	.	G	A	.	.	DP=1255;AO=226;FS=623;RS=632;SAF=0;SAR=226;HA=0;Level=Undefined
+chr4	153247373	.	C	T	.	.	DP=1275;AO=19;FS=621;RS=654;SAF=1;SAR=18;HA=0;Level=Undefined
+chr7	55242489	.	G	A	.	.	DP=3467;AO=52;FS=2124;RS=1343;SAF=36;SAR=16;HA=0;Level=Undefined
+chr7	55249038	.	GCATCTGCCTCACCTCCACCGTGCAG	GCCATCTGCCTCACCTCCACCGTGCAA	.	.	DP=1287;AO=69;FS=787;RS=500;SAF=69;SAR=0;HA=0;Level=Undefined
+chr7	55249054	.	CA	CGA	.	.	DP=1287;AO=14;FS=787;RS=500;SAF=14;SAR=0;HA=0;Level=Undefined
+chr7	116411823	.	AG	ACG	.	.	DP=2130;AO=26;FS=663;RS=1467;SAF=26;SAR=0;HA=0;Level=Undefined
+chr7	116411832	.	CA	CGA	.	.	DP=2149;AO=27;FS=673;RS=1476;SAF=23;SAR=4;HA=0;Level=Undefined
+chr7	116411840	.	CA	CGA	.	.	DP=2118;AO=52;FS=654;RS=1464;SAF=50;SAR=2;HA=0;Level=Undefined
+chr7	116411846	.	CT	CAT	.	.	DP=2116;AO=84;FS=638;RS=1478;SAF=84;SAR=0;HA=0;Level=Undefined
+chr7	116411857	.	CA	CGA	.	.	DP=2061;AO=55;FS=584;RS=1477;SAF=55;SAR=0;HA=0;Level=Undefined
+chr7	140453139	.	GTA	GTTA	.	.	DP=1414;AO=16;FS=769;RS=645;SAF=0;SAR=16;HA=0;Level=Undefined
+chr7	140481499	.	TA	AT	.	.	DP=5095;AO=75;FS=2366;RS=2729;SAF=0;SAR=75;HA=0;Level=Undefined
+chr8	38274814	.	C	T	.	.	DP=1495;AO=23;FS=624;RS=871;SAF=12;SAR=11;HA=0;Level=Undefined
+chr8	38274832	.	GT	GCT	.	.	DP=1497;AO=30;FS=623;RS=874;SAF=0;SAR=30;HA=0;Level=Undefined
+chr8	38274845	.	GCA	GCCA	.	.	DP=1490;AO=35;FS=621;RS=869;SAF=35;SAR=0;HA=0;Level=Undefined
+chr9	5073845	.	GAA	GTAA	.	.	DP=1496;AO=50;FS=665;RS=831;SAF=50;SAR=0;HA=0;Level=Undefined
+chr9	133738351	.	GGCC	GC	.	.	DP=759;AO=54;FS=632;RS=127;SAF=0;SAR=54;HA=0;Level=Undefined
+chr9	133738353	.	C	G	.	.	DP=759;AO=52;FS=632;RS=127;SAF=0;SAR=52;HA=0;Level=Undefined
+chr9	133738355	.	AGTACGG	AGTACG	.	.	DP=855;AO=178;FS=631;RS=224;SAF=0;SAR=178;HA=0;Level=Undefined
+chr9	133738359	.	CG	GC	.	.	DP=855;AO=38;FS=631;RS=224;SAF=0;SAR=38;HA=0;Level=Undefined
+chr9	133747590	.	GC	GAC	.	.	DP=2503;AO=61;FS=1201;RS=1302;SAF=61;SAR=0;HA=0;Level=Undefined
+chr9	133748216	.	CGTGTT	AGTGTTT	.	.	DP=496;AO=5;FS=203;RS=293;SAF=5;SAR=0;HA=0;Level=Undefined
+chr9	133748216	.	CGTGTT	CGTGTTT	.	.	DP=496;AO=5;FS=203;RS=293;SAF=5;SAR=0;HA=0;Level=Undefined
+chr9	133748216	.	C	A	.	.	DP=496;AO=161;FS=203;RS=293;SAF=63;SAR=98;HA=0;Level=Undefined
+chr9	133748488	.	ACA	ACCA	.	.	DP=662;AO=14;FS=256;RS=406;SAF=0;SAR=14;HA=0;Level=Undefined
