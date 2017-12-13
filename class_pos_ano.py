@@ -3,135 +3,108 @@ import sys
 import HTSeq
 import itertools
 
-class SnpSplitHandler:
+class ClassPosAnoHandler:
 
-    def __init__(self):
-        self.out1 = []
-        self.out2 = []
+    def __init__(self, faFile, xlsFile):
+        self.out = []
         self.vcf_out = []
+        self.faFile = faFile
+        self.xlsFile = xlsFile
+        self.vcf_title = []
 
-    def get_out_data(self, spl, index):
-        if index == 1:
-            return '%s\t%s\t%s\t%s\t%s\t%s\thahaha' % (spl[0], spl[1], spl[2], spl[3], spl[4], spl[5])
-        if index == 2:
-            return '%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], spl[1], spl[2], spl[3], spl[4], spl[5])
-        if index == 3:
-            return '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\thahaha' % (spl[0], spl[1], spl[2], spl[3], spl[4], spl[5], spl[7], spl[8], spl[9], spl[10])
-        if index == 4:
-            return '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], spl[1], spl[2], spl[3], spl[4], spl[5], spl[7], spl[8], spl[9], spl[10])
+    def read_title(self, inputFile):
+        with open(inputFile, 'r') as file:
+            for data in file:
+                if data[0] != '#':
+                    return
+                self.vcf_title.append(data)
 
-    def snp1(self, datas):
+    def read_vcf(self, inputFile):
+        return [data for data in itertools.islice(HTSeq.VCF_Reader(inputFile), sys.maxsize)]
+
+    def ano1(self, datas):
+        cot = {}
+        spr = {}
         for data in datas:
-            spl = data.split('\t')
-            if len(spl[2]) != len(spl[3]):
-                if len(spl) <= 10:
-                    if spl[-1] == 'hahaha':
-                        self.out1.append(self.get_out_data(spl, 1))
-                    else:
-                        self.out1.append(self.get_out_data(spl, 2))
-                else:
-                    if spl[-1] == 'hahaha':
-                        self.out1.append(self.get_out_data(spl, 3))
-                    else:
-                        self.out1.append(self.get_out_data(spl, 4))
+            cot[data.chrom][data.pos.start] = cot.setdefault(data.chrom, {}).setdefault(data.pos.start, 0) + 1
+            # HA = 0
+            info_split = data.info.split(';')
+            if len(info_split) < 7:
+                spr.setdefault(data.chrom, {}).setdefault(data.pos.start, {})[cot[data.chrom][data.pos.start]] = '%s\t%s\t%s\t%s' % (data.ref, data.alt[0], info_split[0].split('=')[1], info_split[1].split('=')[1])
             else:
-                san = 0
-                for i in range(0, len(spl[2])):
-                    san += 1 if spl[2][i] == spl[3][i] else 0
-                if 2 * san >= len(spl[2]):
-                    tot = 0
-                    pot = {}
-                    bsr = {}
-                    bsa = {}
-                    rba = {}
-                    cnt = {}
+                spr.setdefault(data.chrom, {}).setdefault(data.pos.start, {})[
+                    cot[data.chrom][data.pos.start]] = '%s\t%s\t%s\t%s\t%s-%s-%s-%s' % (
+                data.ref, data.alt[0], info_split[0].split('=')[1], info_split[1].split('=')[1], info_split[2].split('=')[1], info_split[3].split('=')[1],info_split[4].split('=')[1], info_split[5].split('=')[1])
 
-                    for i in range(0, len(spl[2])):
-                        rba[int(spl[1]) + i] = spl[2][i]
-                    for i in range(0, len(spl[2])):
-                        if spl[2][i] != spl[3][i]:
-                            tot += 1
-                            pot[tot] = int(spl[1]) + i
-                            bsr[tot] = spl[2][i]
-                            bsa[tot] = spl[3][i]
-                    for i in range(1, tot):
-                        if pot[i+1] - pot[i] < 3:
-                            cnt[i] = i + 1
-                    for i in range(1, tot):
-                        if cnt.get(i):
-                            ano = cnt[i]
-                            while cnt.get(ano):
-                                cnt[i] = cnt[ano]
-                                mid = ano
-                                ano = cnt[ano]
-                                cnt.pop(mid)
-                    for i in range(1, tot):
-                        if cnt.get(i):
-                            rsq = bsr[i]
-                            asq = bsa[i]
-                            for m in range(i+1, cnt[i]+1):
-                                for n in range(pot[m-1] + 1, pot[m]):
-                                    rsq += rba[n]
-                                    asq += rba[n]
-                                rsq += bsr[m]
-                                asq += bsa[m]
-                                pot.pop(m)
-                            bsr[i] = rsq
-                            bsa[i] = asq
-                    for i in range(1, tot+1):
-                        if pot.get(i):
-                            if len(spl) <= 10:
-                                self.out1.append('%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], pot[i], bsr[i], bsa[i], spl[4], spl[5]))
-                            else:
-                                self.out1.append('%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], pot[i], bsr[i], bsa[i], spl[4], spl[5], spl[7], spl[8], spl[9], spl[10]))
+        rfb = {}
+        for fa_data in itertools.islice(HTSeq.FastaReader(self.faFile), sys.maxsize):
+            inf = fa_data.name.split(':')
+            for i in range(0, len(fa_data.seq)):
+                rfb.setdefault(inf[0], {})[int(inf[1]) + i] = chr(fa_data.seq[i])
+
+        exi = {}
+        with open(self.xlsFile, 'r') as xls_reader:
+            for xls_data in xls_reader.readlines():
+                spl = xls_data[:-1].split('\t')
+
+                if len(spl[3]) == len(spl[4]):
+                    if cot.get(spl[0], {}).get(int(spl[1])):
+                        for m in range(1, cot[spl[0]][int(spl[1])] + 1):
+                            mid = spr[spl[0]][int(spl[1])][m].split('\t')
+                            if mid[0] == spl[3] and mid[1] == spl[4]:
+                                out = 'Class_1\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], spl[5], spl[6], spl[7], spl[8], mid[2], mid[3])
+                                if len(mid) > 4:
+                                    out += '\t%s' % mid[4]
+                                self.out.append(out)
+                                exi.setdefault(spl[0], {}).setdefault(int(spl[1]), {}).setdefault(mid[0], {})[mid[1]] = 1
+                                break
 
                 else:
-                    if len(spl) <= 10:
-                        if spl[-1] == 'hahaha':
-                            self.out1.append(self.get_out_data(spl, 1))
-                        else:
-                            self.out1.append(self.get_out_data(spl, 2))
-                    else:
-                        if spl[-1] == 'hahaha':
-                            self.out1.append(self.get_out_data(spl, 3))
-                        else:
-                            self.out1.append(self.get_out_data(spl, 4))
+                    for i in range(int(spl[1]), int(spl[2]) + 1):
+                        if cot.get(spl[0], {}).get(i):
+                            for m in range(1, cot[spl[0]][i] + 1):
+                                mid = spr[spl[0]][i][m].split('\t')
+                                if len(mid[0]) == len(mid[1]) or len(mid[0]) + i - 1 > int(spl[2]):
+                                    continue
+                                lsq = ''
+                                rsq = ''
+                                msp = i + len(mid[0]) - 1
 
-    def snp2(self, datas):
-        con = {}
-        tel = {}
-        cal = {}
-        tim = {}
+                                for n in range(int(spl[1]), i):
+                                    lsq += rfb[spl[0]][n]
+                                for n in range(msp + 1, int(spl[2]) + 1):
+                                    rsq += rfb[spl[0]][n]
+
+                                nfq = lsq + mid[0] + rsq
+                                naq = lsq + mid[1] + rsq
+                                if nfq == spl[3] and naq == spl[4]:
+                                    out = 'Class_1\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], spl[5], spl[6], spl[7], spl[8], mid[2], mid[3])
+                                    if len(mid) > 4:
+                                        out += '\t%s' % mid[4]
+                                    self.out.append(out)
+                                    exi.setdefault(spl[0], {}).setdefault(i, {}).setdefault(mid[0], {})[mid[1]] = 1
+                                    break
 
         for data in datas:
-            spl = data.split('\t')
-            con[spl[0]][spl[1]][spl[2]][spl[3]] = con.setdefault(spl[0], {}).setdefault(spl[1], {}).setdefault(spl[2], {}).setdefault(spl[3], 0) + 1
-            if spl[-1] == 'hahaha':
-                tel.setdefault(spl[0], {}).setdefault(spl[1], {}).setdefault(spl[2], {})[spl[3]] = 1
-
-        for data in datas:
-            spl = data.split('\t')
-            if con[spl[0]][spl[1]][spl[2]][spl[3]] > 1:
-                if tel.get(spl[0], {}).get(spl[1], {}).get(spl[2], {}).get(spl[3]):
-                    if spl[-1] == 'hahaha':
-                        self.out2.append(data.replace('\thahaha', ''))
-                    else:
-                        continue
-                else:
-                    if tim.get(spl[0], {}).get(spl[1], {}).get(spl[2], {}).get(spl[3]):
-                        mid = cal[spl[0]][spl[1]][spl[2]][spl[3]].split('-')
-                        spl[5] = str(int(spl[5]) + int(mid[0]))
-                        spl[8] = str(int(spl[8]) + int(mid[1]))
-                        spl[9] = str(int(spl[9]) + int(mid[2]))
-                        self.out2.append('\t'.join(spl))
-                    else:
-                        cal.setdefault(spl[0], {}).setdefault(spl[1], {}).setdefault(spl[2], {})[spl[3]] = '%s-%s-%s' % (spl[5], spl[8], spl[9])
-                        tim.setdefault(spl[0], {}).setdefault(spl[1], {}).setdefault(spl[2], {})[spl[3]] = 1
-            else:
-                self.out2.append(data)
+            if not exi.get(data.chrom, {}).get(data.pos.start, {}).get(data.ref, {}).get(data.alt[0]):
+                spp = data.pos.start + len(data.ref) - 1
+                if 'HA=0' in data.info:
+                    info_split = data.info.split(';')
+                    out = 'Undefined\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (data.chrom, data.pos.start, spp, data.ref, data.alt[0], info_split[0].split('=')[1], info_split[1].split('=')[1])
+                    out += '\t%s-%s-%s-%s' % (info_split[2].split('=')[1], info_split[3].split('=')[1],info_split[4].split('=')[1], info_split[5].split('=')[1])
+                    self.out.append(out)
 
     def transfer_vcf(self, datas):
         for data in datas:
             d = data.split('\t')
-            info = 'DP=%s;AO=%s;FS=%s;RS=%s;SAF=%s;SAR=%s;HA=%s' % (d[4], d[5], d[6], d[7], d[8], d[9], 1 if d[-1] == 'hahaha' else 0)
-            self.vcf_out.append('\t'.join([d[0], d[1], '.', d[2], d[3], '.', '.', info]))
+            info8 = d[8].split('-')
+            info = 'DP=%s;AO=%s;FS=%s;RS=%s;SAF=%s;SAR=%s;HA=0;Level=%s' % (d[6], d[7], info8[0],info8[1],info8[2],info8[3], d[0])
+            self.vcf_out.append('\t'.join([d[1], d[2], '.', d[4], d[5], '.', '.', info]))
+
+if __name__ == '__main__':
+    c = ClassPosAnoHandler('test/MP33_seq.fa', 'test/mp33_pos_rev_foruse.xls')
+    c.ano1(c.read_vcf('test/temp/file9'))
+    c.transfer_vcf()
+    with open('over', 'w') as a:
+        for x in c.out:
+            a.write(x + '\n')

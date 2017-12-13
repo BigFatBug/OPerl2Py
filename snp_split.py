@@ -8,6 +8,7 @@ class SnpSplitHandler:
     def __init__(self):
         self.out1 = []
         self.out2 = []
+        self.vcf_out = []
 
     def get_out_data(self, spl, index):
         if index == 1:
@@ -128,3 +129,10 @@ class SnpSplitHandler:
                         tim.setdefault(spl[0], {}).setdefault(spl[1], {}).setdefault(spl[2], {})[spl[3]] = 1
             else:
                 self.out2.append(data)
+
+    def transfer_vcf(self, datas):
+        for data in datas:
+            d = data.split('\t')
+            info = 'DP=%s;AO=%s;FS=%s;RS=%s;SAF=%s;SAR=%s;HA=%s' % (
+            d[4], d[5], d[6], d[7], d[8], d[9], 1 if d[-1] == 'hahaha' else 0)
+            self.vcf_out.append('\t'.join([d[0], d[1], '.', d[2], d[3], '.', '.', info]))

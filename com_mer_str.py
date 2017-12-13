@@ -23,6 +23,14 @@ class ComMerStrHandler:
         self.out4 = []
 
         self.vcf_out = []
+        self.vcf_title = []
+
+    def read_title(self, inputFile):
+        with open(inputFile, 'r') as file:
+            for data in file:
+                if data[0] != '#':
+                    return
+                self.vcf_title.append(data)
 
     def read_vcf(self, inputFile):
         return [data for data in itertools.islice(HTSeq.VCF_Reader(inputFile), sys.maxsize)]
