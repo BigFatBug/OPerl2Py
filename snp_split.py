@@ -81,9 +81,9 @@ class SnpSplitHandler:
                     for i in range(1, tot+1):
                         if pot.get(i):
                             if len(spl) <= 11:
-                                self.out1.append('%s\t%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], pot[i], bsr[i], bsa[i], spl[4], spl[5], spl[-1]))
+                                self.out1.append('%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], pot[i], bsr[i], bsa[i], spl[4], spl[5], spl[-1], spl[-2] if spl[-1] == 'hahaha' else spl[-1]))
                             else:
-                                self.out1.append('%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], pot[i], bsr[i], bsa[i], spl[4], spl[5], spl[7], spl[8], spl[9], spl[10], spl[-1]))
+                                self.out1.append('%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], pot[i], bsr[i], bsa[i], spl[4], spl[5], spl[7], spl[8], spl[9], spl[10], spl[-2] if spl[-1] == 'hahaha' else spl[-1]))
 
                 else:
                     if len(spl) <= 11:
@@ -135,4 +135,4 @@ class SnpSplitHandler:
             d = data.split('\t')
             info = 'DP=%s;AO=%s;FS=%s;RS=%s;SAF=%s;SAR=%s;HA=%s' % (
             d[4], d[5], d[6], d[7], d[8], d[9], 1 if d[-1] == 'hahaha' else 0)
-            self.vcf_out.append('\t'.join([d[0], d[1], '.', d[2], d[3], '.', '.', info]))
+            self.vcf_out.append('\t'.join([d[0], d[1], '.', d[2], d[3], '.', '.', info, d[-2] if d[-1] == 'hahaha' else d[-1]]))

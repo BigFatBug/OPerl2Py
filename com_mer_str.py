@@ -42,6 +42,8 @@ class ComMerStrHandler:
         cnt = {}
         tct = []
         for data in datas:
+            if 'POLY=1' in data._original_line:
+                continue
             dp = re.match('.*;DP=(\d+)', data.info).groups()[0]
             ao = re.match('.*;AO=(\d+)', data.info).groups()[0]
             t = [data.chrom, data.pos.start, data.ref, data.alt[0], dp, ao]
