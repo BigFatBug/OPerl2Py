@@ -256,7 +256,7 @@ class ComMerStrHandler:
                     self.out4.append('%s\thahaha' % ori_data)
                     continue
                 else:
-                    self.out4.append(alt[spl[0]][spl[1]][spl[2]][spl[3]])
+                    self.out4.append(alt[spl[0]][spl[1]][spl[2]][spl[3]] + '\t%s' % ori_data.split('\t')[-1])
                     exi[alt[spl[0]][spl[1]][spl[2]][spl[3]]] = 1
                     self.out4.append('%s\thahaha' % ori_data)
                     continue

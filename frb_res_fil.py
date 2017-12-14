@@ -124,12 +124,12 @@ class FrbResHandler:
             self.write2(data, msum, bdp, qus, rff, rrr, aff, arr)
 
     def write1(self, data, msum, bdp, qus, rff, rrr, aff, arr, att, i):
-        self.res_out.append("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (
+        self.res_out.append("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\thomopolymer=0" % (
             data.chrom, data.pos.start, data.ref, att[i], msum, bdp[i+1], qus[i], rff ,rrr, aff[i], arr[i]))
 
-    def write2(self, data, msum, bdp, qus, rff, rrr, aff, arr):
-        self.res_out.append("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s" % (
-            data.chrom, data.pos.start, data.ref, ','.join(data.alt), msum, bdp[1], qus[0], rff, rrr, aff[0], arr[0]))
+    def write2(self, data, msum, bdp, qus, rff, rrr, aff, arr, poly=0):
+        self.res_out.append("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\thomopolymer=%s" % (
+            data.chrom, data.pos.start, data.ref, ','.join(data.alt), msum, bdp[1], qus[0], rff, rrr, aff[0], arr[0], poly))
 
     def deal1(self, midd, data, ath, msum, bdp, midr, qus, rff, rrr, aff, arr, con):
         if len(data.alt) > 1:
@@ -153,7 +153,7 @@ class FrbResHandler:
             if data.alt[0] in midd or midr in data.alt[0]:
                 if bdp[1] > bdp[0]:
                     self.extend(poly_flag=1)
-                    self.write2(data, msum, bdp, qus, rff, rrr, aff, arr)
+                    self.write2(data, msum, bdp, qus, rff, rrr, aff, arr, poly=1)
             else:
                 self.extend()
                 self.write2(data, msum, bdp, qus, rff, rrr, aff, arr)
@@ -185,7 +185,7 @@ class FrbResHandler:
             if athm in midd or midr in athm:
                 if bdp[1] > bdp[0]:
                     self.extend(poly_flag=1)
-                    self.write2(data, msum, bdp, qus, rff, rrr, aff, arr)
+                    self.write2(data, msum, bdp, qus, rff, rrr, aff, arr, poly=1)
             else:
                 self.extend()
                 self.write2(data, msum, bdp, qus, rff, rrr, aff, arr)

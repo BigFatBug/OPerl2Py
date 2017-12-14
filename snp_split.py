@@ -12,19 +12,19 @@ class SnpSplitHandler:
 
     def get_out_data(self, spl, index):
         if index == 1:
-            return '%s\t%s\t%s\t%s\t%s\t%s\thahaha' % (spl[0], spl[1], spl[2], spl[3], spl[4], spl[5])
+            return '%s\t%s\t%s\t%s\t%s\t%s\t%s\thahaha' % (spl[0], spl[1], spl[2], spl[3], spl[4], spl[5], spl[-2])
         if index == 2:
-            return '%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], spl[1], spl[2], spl[3], spl[4], spl[5])
+            return '%s\t%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], spl[1], spl[2], spl[3], spl[4], spl[5], spl[-1])
         if index == 3:
-            return '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\thahaha' % (spl[0], spl[1], spl[2], spl[3], spl[4], spl[5], spl[7], spl[8], spl[9], spl[10])
+            return '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\thahaha' % (spl[0], spl[1], spl[2], spl[3], spl[4], spl[5], spl[7], spl[8], spl[9], spl[10], spl[-2])
         if index == 4:
-            return '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], spl[1], spl[2], spl[3], spl[4], spl[5], spl[7], spl[8], spl[9], spl[10])
+            return '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], spl[1], spl[2], spl[3], spl[4], spl[5], spl[7], spl[8], spl[9], spl[10], spl[-1])
 
     def snp1(self, datas):
         for data in datas:
             spl = data.split('\t')
             if len(spl[2]) != len(spl[3]):
-                if len(spl) <= 10:
+                if len(spl) <= 11:
                     if spl[-1] == 'hahaha':
                         self.out1.append(self.get_out_data(spl, 1))
                     else:
@@ -80,13 +80,13 @@ class SnpSplitHandler:
                             bsa[i] = asq
                     for i in range(1, tot+1):
                         if pot.get(i):
-                            if len(spl) <= 10:
-                                self.out1.append('%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], pot[i], bsr[i], bsa[i], spl[4], spl[5]))
+                            if len(spl) <= 11:
+                                self.out1.append('%s\t%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], pot[i], bsr[i], bsa[i], spl[4], spl[5], spl[-1]))
                             else:
-                                self.out1.append('%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], pot[i], bsr[i], bsa[i], spl[4], spl[5], spl[7], spl[8], spl[9], spl[10]))
+                                self.out1.append('%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s' % (spl[0], pot[i], bsr[i], bsa[i], spl[4], spl[5], spl[7], spl[8], spl[9], spl[10], spl[-1]))
 
                 else:
-                    if len(spl) <= 10:
+                    if len(spl) <= 11:
                         if spl[-1] == 'hahaha':
                             self.out1.append(self.get_out_data(spl, 1))
                         else:
