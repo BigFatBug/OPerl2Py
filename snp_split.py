@@ -70,9 +70,9 @@ class SnpSplitHandler:
                             rsq = bsr[i]
                             asq = bsa[i]
                             for m in range(i+1, cnt[i]+1):
-                                for n in range(pot[m-1] + 1, pot[m]):
-                                    rsq += rba[n]
-                                    asq += rba[n]
+                                for n in range(pot.get(m-1, 0) + 1, pot.get(m, 0)):
+                                    rsq += rba.get(n, '')
+                                    asq += rba.get(n, '')
                                 rsq += bsr[m]
                                 asq += bsa[m]
                                 pot.pop(m)
