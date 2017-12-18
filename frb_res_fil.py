@@ -74,7 +74,7 @@ class FrbResHandler:
                         if midd[-1] in ['A', 'T', 'C', 'G']:
                             midd = midd[:-1]
                     else:
-                        midr = rfb + data.ref
+                        midr = rfb[0] + data.ref
                         midd = data.ref
                         if midd[0] in ['A', 'T', 'C', 'G']:
                             midd = midd[1:]
@@ -85,7 +85,7 @@ class FrbResHandler:
                 if rfb[-1] == rfb[-2]:
                     ttb = rfb[1]
                     btl = 1
-                    for i in range(len(rfb)):
+                    for i in range(1, len(rfb)):
                         btl = 0 if rfb[i] != ttb else btl
                     if btl:
                         midr = rfb + ttb
@@ -247,7 +247,7 @@ class FrbResHandler:
 
 if __name__ == '__main__':
     frb = FrbResHandler()
-    frb.read_title('test/160923_IonXpress_003.freebayes.vcf')
-    frb.exectube(frb.read_file('test/160923_IonXpress_003.freebayes.vcf'))
+    frb.read_title('/home/guoguo/下载/161124_IonXpress_083.freebayes.vcf')
+    frb.exectube(frb.read_file('/home/guoguo/下载/161124_IonXpress_083.freebayes.vcf'))
     frb.write_vcf_out_file('1')
     frb.write_res_file('2')
